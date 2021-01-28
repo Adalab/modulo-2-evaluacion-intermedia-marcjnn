@@ -19,7 +19,8 @@ const randomNumber = getRandomNumber(100);
 
 console.log(`La respuesta es... ${randomNumber}`);
 
-function handleClickButton() {
+function handleClickButton(event) {
+  event.preventDefault();
   compareChosenNumber()
   incrementAttemptsNumber();
 }
