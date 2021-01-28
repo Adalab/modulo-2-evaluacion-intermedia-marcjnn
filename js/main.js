@@ -6,7 +6,10 @@ const clueElement = document.querySelector(".js-clue");
 const clueParagraphElement = document.querySelector(".js-clue-paragraph");
 const attemptsNumberElement = document.querySelector(".js-attemptsNumber");
 
-// generate randomNumber
+clueElement.innerHTML = "Escripe el numero y dale a Prueba";
+
+let attemptsNumber = 0;
+attemptsNumberElement.innerHTML = attemptsNumber;
 
 function getRandomNumber(max) {
   return Math.ceil(Math.random() * max);
@@ -16,21 +19,17 @@ const randomNumber = getRandomNumber(100);
 
 console.log(`La respuesta es... ${randomNumber}`);
 
-// higher/lower number
+function handleClickButton() {
+  compareChosenNumber()
+  incrementAttemptsNumber();
+}
 
-console.log(getNumberElement.value);
-
-// function incrementAttemptsNumber ()
-let attemptsNumber = 0; // fuera xq se tiene que cargar en 0 y luego va incrementando, no reset cada vez
-
-function handleCompareChosenNumber() {
+function compareChosenNumber() {
   const introducedNumber = parseInt(getNumberElement.value);
 
-  // if (introducedNumber === NaN) {
-  //   console.log("Tienes que introducir un número");
-  // }
-
-    if (introducedNumber === randomNumber) {
+  if (isNaN(introducedNumber)) {
+    clueParagraphElement.innerHTML = "Tienes que introducir un número";
+  } else if (introducedNumber === randomNumber) {
     clueParagraphElement.innerHTML = "Has ganado campeona!!!";
   } else if (introducedNumber < randomNumber && introducedNumber >= 1) {
     clueElement.innerHTML = "Demasiado bajo";
@@ -39,11 +38,11 @@ function handleCompareChosenNumber() {
   } else {
     clueElement.innerHTML = "El número debe estar entre 1 y 100.";
   }
+}
 
-  // increment number of attempts
-
+function incrementAttemptsNumber() {
   attemptsNumber += 1;
   attemptsNumberElement.innerHTML = attemptsNumber;
 }
 
-buttonElement.addEventListener("click", handleCompareChosenNumber);
+buttonElement.addEventListener("click", handleClickButton);
