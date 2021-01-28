@@ -13,15 +13,22 @@
   <body class="page">
     <header class="header"><h1>Adivina el número</h1></header>
     <main class="main">
-      <label for="" class="label">Introduce aquí tu número entre 1 y 100</label>
-      <input
-        type="number"
-        title="número entre 1 y 100"
-        min="1"
-        max="100"
-        class="input js-number"
-      />
-      <button class="button js-button">Prueba</button>
+      <form action="" method="GET">
+        <label for="chosenNumber" class="label"
+          >Introduce aquí tu número entre 1 y 100</label
+        >
+        <input
+          id="chosenNumber"
+          type="number"
+          name="chosenNumber"
+          title="número entre 1 y 100"
+          min="1"
+          max="100"
+          class="input js-number"
+          placeholder="introduce tu número"
+        />
+        <button class="button js-button">Prueba</button>
+      </form>
       <p class="frame js-clue-paragraph">
         Pista: <span class="js-clue"></span>
       </p>

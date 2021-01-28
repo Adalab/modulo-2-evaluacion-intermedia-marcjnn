@@ -51,6 +51,11 @@
   width: 30vw;
 }
 
+.input::placeholder {
+  color: var(--color-small);
+  font-size: 12px;
+}
+
 .button {
   display: block;
   padding: var(--padding-page);
