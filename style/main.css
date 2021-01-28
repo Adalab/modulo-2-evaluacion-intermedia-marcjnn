@@ -67,6 +67,7 @@
   margin-top: var(--margin-page);
   font-weight: 400;
   font-size: 18px;
+  max-width: 100%;
 }
 
 /* FOOTER */
@@ -80,4 +81,16 @@
 .footer__link {
   text-decoration: none;
   color: var(--color-small);
+}
+
+@media all and (min-width: 768px) {
+  .frame {
+    max-width: 60vw;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .frame {
+    max-width: 50vw;
+  }
 }
