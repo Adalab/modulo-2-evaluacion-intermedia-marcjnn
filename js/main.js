@@ -3,7 +3,6 @@
 const getNumberElement = document.querySelector(".js-number");
 const buttonElement = document.querySelector(".js-button");
 const clueElement = document.querySelector(".js-clue");
-const clueParagraphElement = document.querySelector(".js-clue-paragraph");
 const attemptsNumberElement = document.querySelector(".js-attemptsNumber");
 
 clueElement.innerHTML = "Escripe el numero y dale a Prueba";
@@ -29,9 +28,9 @@ function compareChosenNumber() {
   const introducedNumber = parseInt(getNumberElement.value);
 
   if (isNaN(introducedNumber)) {
-    clueParagraphElement.innerHTML = "Tienes que introducir un número";
+    clueElement.innerHTML = "Tienes que introducir un número";
   } else if (introducedNumber === randomNumber) {
-    clueParagraphElement.innerHTML = "Has ganado campeona!!!";
+    clueElement.innerHTML = "Has ganado campeona!!!";
   } else if (introducedNumber < randomNumber && introducedNumber >= 1) {
     clueElement.innerHTML = "Demasiado bajo";
   } else if (introducedNumber > randomNumber && introducedNumber <= 100) {
