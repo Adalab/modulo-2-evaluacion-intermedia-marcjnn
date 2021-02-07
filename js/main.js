@@ -1,9 +1,11 @@
-'use strict';
+"use strict";
 
 const getNumberElement = document.querySelector(".js-number");
 const buttonElement = document.querySelector(".js-button");
 const clueElement = document.querySelector(".js-clue");
 const attemptsNumberElement = document.querySelector(".js-attemptsNumber");
+const minNumber = 1;
+const maxNumber = 100;
 
 clueElement.innerHTML = "Escripe el numero y dale a Prueba";
 
@@ -14,35 +16,46 @@ function getRandomNumber(max) {
   return Math.ceil(Math.random() * max);
 }
 
-const randomNumber = getRandomNumber(100);
+const randomNumber = getRandomNumber(maxNumber);
 
 console.log(`La respuesta es... ${randomNumber}`);
 
 function handleClickButton(event) {
   event.preventDefault();
-  compareChosenNumber()
-  incrementAttemptsNumber();
+
+  const clueText = getClueTextForNumber(parseInt(getNumberElement.value));
+  incrementAttempts();
+
+  fillHtml(clueElement, clueText);
+  fillHtml(attemptsNumberElement, attemptsNumber);
 }
 
-function compareChosenNumber() {
-  const introducedNumber = parseInt(getNumberElement.value);
-
+function getClueTextForNumber(introducedNumber) {
   if (isNaN(introducedNumber)) {
-    clueElement.innerHTML = "Tienes que introducir un número";
-  } else if (introducedNumber === randomNumber) {
-    clueElement.innerHTML = "Has ganado campeona!!!";
-  } else if (introducedNumber < randomNumber && introducedNumber >= 1) {
-    clueElement.innerHTML = "Demasiado bajo";
-  } else if (introducedNumber > randomNumber && introducedNumber <= 100) {
-    clueElement.innerHTML = "Demasiado alto";
-  } else {
-    clueElement.innerHTML = "El número debe estar entre 1 y 100.";
+    return "Tienes que introducir un número";
   }
+
+  if (introducedNumber === randomNumber) {
+    return "Has ganado campeona!!!";
+  }
+
+  if (introducedNumber < randomNumber && introducedNumber >= minNumber) {
+    return "Demasiado bajo";
+  }
+
+  if (introducedNumber > randomNumber && introducedNumber <= maxNumber) {
+    return "Demasiado alto";
+  }
+
+  return `El número debe estar entre ${minNumber} y ${maxNumber}.`;
 }
 
-function incrementAttemptsNumber() {
+function incrementAttempts() {
   attemptsNumber += 1;
-  attemptsNumberElement.innerHTML = attemptsNumber;
+}
+
+function fillHtml(el, text) {
+  el.innerHTML = text;
 }
 
 buttonElement.addEventListener("click", handleClickButton);
